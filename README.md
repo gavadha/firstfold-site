@@ -19,5 +19,5 @@ paid kit lives in the private `firstfold` repo.
 
 - `index.html` — the storefront (update the buy button: replace `REPLACE_WITH_GUMROAD_LINK` once the Gumroad product exists)
 - `demo/saas-landing.html` — live demo template
-- `logo.svg` — brand mark
+- `logo.png` — brand mark (emblem); `og-image.png` — full logo for social sharing
 - `CNAME` — custom domain (navaark.com)
