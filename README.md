@@ -1,23 +1,18 @@
-# firstfold-site (public storefront)
+# firstfold-site (public site)
 
-Public landing page for **FirstFold by Navaark** — served at **navaark.com** via GitHub Pages.
+Public site for **Navaark**, served at **navaark.com** via GitHub Pages.
 
-## What is FirstFold?
+## What is Navaark?
 
-**FirstFold is the fastest way to ship a landing page that actually converts.**
+Navaark is a fractional Chief Data & AI Officer practice for consumer brands selling into
+Walmart, typically $50M-$300M in revenue. The site covers three things: the offer, the
+services and pricing structure, and the founder's background.
 
-A premium kit of copy-paste landing pages and sections for indie founders, solo devs, and
-freelancers — all in plain **HTML + Tailwind**, with no framework and no build step. Open a
-file, swap your words, deploy anywhere. Conversion-focused layouts, responsive and
-dark-mode-ready, with lifetime updates and unlimited project use.
-
-Ship a beautiful, high-converting landing page in an afternoon — not a weekend.
-A product of **Navaark**.
-
-Contains only the marketing storefront + one live demo template (the free hook). The full
-paid kit lives in the private `firstfold` repo.
-
-- `index.html` — the storefront (update the buy button: replace `REPLACE_WITH_GUMROAD_LINK` once the Gumroad product exists)
-- `demo/saas-landing.html` — live demo template
+- `index.html` — homepage: the problem, the offer, credibility, and the booking CTA
+- `services.html` — the Data & AI Diagnostic and the Fractional CDAIO retainer, in full
+- `about.html` — founder bio (Geetha Avadhanula)
+- `404.html` — custom not-found page, auto-redirects to the homepage
 - `logo.png` — brand mark (emblem); `og-image.jpg` — full logo for social sharing
 - `CNAME` — custom domain (navaark.com)
+
+No pricing is published on the site. Pricing is set after a booked conversation.
