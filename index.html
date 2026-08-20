@@ -12,9 +12,13 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://navaark.com/og-image.jpg" />
+  <link rel="canonical" href="https://navaark.com/" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="./logo.png" />
-  <style> html{scroll-behavior:smooth} </style>
+  <style>
+    html{scroll-behavior:smooth}
+    a:focus-visible, button:focus-visible { outline: 2px solid #1B2A4A; outline-offset: 2px; }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -91,6 +95,29 @@
     <p class="mt-8 text-center text-lg font-semibold text-slate-900">None of this is a data problem. It's a leadership problem. No one owns the data end to end.</p>
   </section>
 
+  <!-- HOW WE WORK -->
+  <section id="how-we-work" class="mx-auto max-w-5xl px-5 py-8">
+    <h2 class="text-3xl font-extrabold tracking-tight text-center text-slate-900">How the engagement works</h2>
+    <p class="mt-3 text-center text-slate-600 max-w-2xl mx-auto">Three stages. There's no obligation to move past the first one.</p>
+    <div class="mt-12 grid sm:grid-cols-3 gap-6">
+      <div class="rounded-2xl border border-slate-200 p-6">
+        <div class="text-sm font-bold text-[#1B2A4A]">01 · Diagnose</div>
+        <h3 class="mt-2 font-bold text-slate-900">Data & AI Diagnostic</h3>
+        <p class="mt-2 text-sm text-slate-600">A fixed-fee, 2-to-3-week review of your data stack, forecasting, OTIF, and scorecard process.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-6">
+        <div class="text-sm font-bold text-[#1B2A4A]">02 · Prioritize</div>
+        <h3 class="mt-2 font-bold text-slate-900">A roadmap you can act on</h3>
+        <p class="mt-2 text-sm text-slate-600">The findings become a prioritized plan: what to fix first, what to automate, what to stop doing.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-6">
+        <div class="text-sm font-bold text-[#1B2A4A]">03 · Execute</div>
+        <h3 class="mt-2 font-bold text-slate-900">Fractional leadership, if it's a fit</h3>
+        <p class="mt-2 text-sm text-slate-600">Where it makes sense, ongoing fractional data and AI leadership to run what the roadmap calls for.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- OFFER -->
   <section id="offer" class="bg-slate-50 border-y border-slate-100">
     <div class="mx-auto max-w-4xl px-5 py-20">
@@ -151,10 +178,34 @@
     </div>
   </section>
 
-  <footer class="border-t border-slate-100">
-    <div class="mx-auto max-w-6xl px-5 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500">
-      <span>© <span id="yr"></span> Navaark</span>
-      <span>Fractional data and AI leadership for Walmart suppliers</span>
+  <footer class="border-t border-slate-100 bg-slate-50">
+    <div class="mx-auto max-w-6xl px-5 py-12 grid gap-10 sm:grid-cols-3">
+      <div>
+        <a href="./index.html" class="flex items-center gap-2 font-extrabold tracking-tight text-lg text-slate-900"><img src="./logo.png" class="h-8 w-8 rounded-md" alt="" /> Navaark</a>
+        <p class="mt-3 text-sm text-slate-500 max-w-xs">Fractional data and AI leadership for consumer brands selling into Walmart.</p>
+      </div>
+      <div class="text-sm">
+        <p class="font-semibold text-slate-900">Site</p>
+        <ul class="mt-3 space-y-2 text-slate-500">
+          <li><a href="./about.html" class="hover:text-slate-900">About</a></li>
+          <li><a href="./services.html" class="hover:text-slate-900">Services</a></li>
+          <li><a href="#contact" class="hover:text-slate-900">Contact</a></li>
+        </ul>
+      </div>
+      <div class="text-sm">
+        <p class="font-semibold text-slate-900">Legal</p>
+        <ul class="mt-3 space-y-2 text-slate-500">
+          <li><a href="./privacy.html" class="hover:text-slate-900">Privacy Policy</a></li>
+          <li><a href="./terms.html" class="hover:text-slate-900">Terms of Use</a></li>
+        </ul>
+        <p class="mt-4 text-slate-500">hello@navaark.com</p>
+      </div>
+    </div>
+    <div class="border-t border-slate-200">
+      <div class="mx-auto max-w-6xl px-5 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400 text-center sm:text-left">
+        <span>© <span id="yr"></span> [LEGAL BUSINESS NAME] (operating as Navaark). All rights reserved.</span>
+        <span>Navaark is an independent advisory practice and is not affiliated with, sponsored by, or endorsed by Walmart Inc.</span>
+      </div>
     </div>
   </footer>
   <script>document.getElementById('yr').textContent=new Date().getFullYear()</script>

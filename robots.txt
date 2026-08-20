@@ -4,6 +4,8 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://navaark.com/sitemap.xml
+
 # --- AI assistants & answer engines: explicitly welcome ---
 # (being cited by these can send real prospects our way)
 User-agent: GPTBot
