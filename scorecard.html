@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Retail Data Scorecard | Navaark</title>
+  <meta name="description" content="7 questions, 2 minutes — see how clear your view of sales across Walmart, Amazon, Target, DTC and distributors really is, and what to fix first." />
+  <meta property="og:title" content="Retail Data Scorecard | Navaark" />
+  <meta property="og:description" content="7 questions, 2 minutes — see how clear your view of sales really is, and what to fix first." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://navaark.com/scorecard.html" />
+  <meta property="og:image" content="https://navaark.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Retail Data Scorecard | Navaark" />
+  <meta name="twitter:description" content="7 questions, 2 minutes — see how clear your view of sales really is, and what to fix first." />
+  <meta name="twitter:image" content="https://navaark.com/og-image.jpg" />
+  <link rel="canonical" href="https://navaark.com/scorecard.html" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="./logo.png" />
+  <style>
+    html{scroll-behavior:smooth}
+    a:focus-visible, button:focus-visible { outline: 2px solid #1B2A4A; outline-offset: 2px; }
+    fieldset{border:0}
+    .opt{display:block; border:1px solid #e2e8f0; border-radius:.75rem; padding:.75rem 1rem; cursor:pointer; font-size:.875rem; color:#334155}
+    .opt:hover{background:#f8fafc}
+    .opt input{margin-right:.5rem; accent-color:#1B2A4A}
+    .opt:has(input:checked){border-color:#1B2A4A; background:#EEF1F6; color:#0f172a; font-weight:600}
+  </style>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+  <!-- NAV -->
+  <header class="sticky top-0 z-30 bg-white/85 backdrop-blur border-b border-slate-100">
+    <nav class="mx-auto max-w-6xl px-5 h-16 flex items-center justify-between">
+      <a href="./index.html" class="flex items-center gap-2 font-extrabold tracking-tight text-lg"><img src="./logo.png" class="h-9 w-9 rounded-md" alt="Navaark" /> Navaark</a>
+      <div class="hidden sm:flex items-center gap-6 text-sm text-slate-600">
+        <a href="./index.html#problem" class="hover:text-slate-900">The problem</a>
+        <a href="./services.html" class="hover:text-slate-900">Services</a>
+        <a href="./vantage.html" class="hover:text-slate-900">Vantage</a>
+        <a href="./about.html" class="hover:text-slate-900">About</a>
+        <a href="./insights/" class="hover:text-slate-900">Insights</a>
+        <a href="https://calendar.app.google/cm4nGc9spB4UnLk68" target="_blank" rel="noopener" class="rounded-lg bg-[#1B2A4A] text-white px-4 py-2 font-semibold hover:bg-[#2F3E5E]">Book a call</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- INTRO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(27,42,74,0.12),transparent)]"></div>
+    <div class="mx-auto max-w-3xl px-5 pt-20 pb-10 text-center">
+      <p class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs text-slate-600">Retail Data Scorecard · 7 questions · 2 minutes</p>
+      <h1 class="mt-5 text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.05] text-slate-900">How clear is your view of sales, really?</h1>
+      <p class="mt-6 text-lg text-slate-600">Answer honestly. You get a score out of 21, a plain-language read-out, and the one thing to fix first. Nothing is sent anywhere unless you choose to send it.</p>
+    </div>
+  </section>
+
+  <!-- QUESTIONS -->
+  <section class="mx-auto max-w-3xl px-5 pb-8">
+    <form id="scorecard-form" novalidate>
+      <div class="space-y-6">
+
+        <fieldset class="rounded-2xl border border-slate-200 p-6" data-q="1">
+          <legend class="font-bold text-slate-900 px-1">1. Can you see sales across all your channels in one place?</legend>
+          <p class="mt-1 text-sm text-slate-500">Walmart, Amazon, Target, DTC, distributors — together, not one portal at a time.</p>
+          <div class="mt-4 space-y-2">
+            <label class="opt"><input type="radio" name="q1" value="0" /> No — I don't have one place for that</label>
+            <label class="opt"><input type="radio" name="q1" value="1" /> Only some channels</label>
+            <label class="opt"><input type="radio" name="q1" value="2" /> Yes, but it takes manual work to pull together</label>
+            <label class="opt"><input type="radio" name="q1" value="3" /> Yes — one dashboard</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="rounded-2xl border border-slate-200 p-6" data-q="2">
+          <legend class="font-bold text-slate-900 px-1">2. How long does it take to answer "what changed in sales this week?"</legend>
+          <div class="mt-4 space-y-2">
+            <label class="opt"><input type="radio" name="q2" value="0" /> Days — or I can't answer it</label>
+            <label class="opt"><input type="radio" name="q2" value="1" /> About a day</label>
+            <label class="opt"><input type="radio" name="q2" value="2" /> A few hours</label>
+            <label class="opt"><input type="radio" name="q2" value="3" /> Minutes</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="rounded-2xl border border-slate-200 p-6" data-q="3">
+          <legend class="font-bold text-slate-900 px-1">3. How many hours a week does your team spend on manual reporting?</legend>
+          <p class="mt-1 text-sm text-slate-500">Copying numbers between portals, spreadsheets and slides.</p>
+          <div class="mt-4 space-y-2">
+            <label class="opt"><input type="radio" name="q3" value="0" /> 10 hours or more</label>
+            <label class="opt"><input type="radio" name="q3" value="1" /> 5 to 10 hours</label>
+            <label class="opt"><input type="radio" name="q3" value="2" /> 1 to 5 hours</label>
+            <label class="opt"><input type="radio" name="q3" value="3" /> Under an hour</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="rounded-2xl border border-slate-200 p-6" data-q="4">
+          <legend class="font-bold text-slate-900 px-1">4. How often are you surprised by a stockout or a void?</legend>
+          <div class="mt-4 space-y-2">
+            <label class="opt"><input type="radio" name="q4" value="0" /> Often — I find out after the shelf is empty</label>
+            <label class="opt"><input type="radio" name="q4" value="1" /> Sometimes</label>
+            <label class="opt"><input type="radio" name="q4" value="2" /> Rarely</label>
+            <label class="opt"><input type="radio" name="q4" value="3" /> Almost never — we catch the risk early</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="rounded-2xl border border-slate-200 p-6" data-q="5">
+          <legend class="font-bold text-slate-900 px-1">5. Do you know what deductions are costing you — and why?</legend>
+          <div class="mt-4 space-y-2">
+            <label class="opt"><input type="radio" name="q5" value="0" /> No, not really</label>
+            <label class="opt"><input type="radio" name="q5" value="1" /> Roughly, in total</label>
+            <label class="opt"><input type="radio" name="q5" value="2" /> Yes, by month</label>
+            <label class="opt"><input type="radio" name="q5" value="3" /> Yes — by reason and by PO</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="rounded-2xl border border-slate-200 p-6" data-q="6">
+          <legend class="font-bold text-slate-900 px-1">6. Can you see what's likely to happen in the next 4 weeks?</legend>
+          <div class="mt-4 space-y-2">
+            <label class="opt"><input type="radio" name="q6" value="0" /> No forecast at all</label>
+            <label class="opt"><input type="radio" name="q6" value="1" /> Gut feel</label>
+            <label class="opt"><input type="radio" name="q6" value="2" /> A spreadsheet forecast</label>
+            <label class="opt"><input type="radio" name="q6" value="3" /> Yes — by channel and by SKU</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="rounded-2xl border border-slate-200 p-6" data-q="7">
+          <legend class="font-bold text-slate-900 px-1">7. How many channels do you sell through?</legend>
+          <p class="mt-1 text-sm text-slate-500">Walmart, Amazon, Target, DTC / Shopify, distributors — count each one.</p>
+          <div class="mt-4 space-y-2">
+            <label class="opt"><input type="radio" name="q7" value="0" /> One</label>
+            <label class="opt"><input type="radio" name="q7" value="1" /> Two</label>
+            <label class="opt"><input type="radio" name="q7" value="2" /> Three or four</label>
+            <label class="opt"><input type="radio" name="q7" value="3" /> Five or more</label>
+          </div>
+        </fieldset>
+
+      </div>
+
+      <p id="form-error" class="hidden mt-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-800" role="alert"></p>
+
+      <button type="submit" class="mt-8 w-full sm:w-auto rounded-xl bg-[#1B2A4A] text-white px-8 py-3.5 font-bold hover:bg-[#2F3E5E]">See my score →</button>
+    </form>
+
+    <!-- RESULT -->
+    <div id="result" class="hidden mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-8">
+      <p class="text-sm font-bold text-[#1B2A4A]">Your score</p>
+      <p class="mt-2 text-5xl font-extrabold tracking-tight text-slate-900"><span id="score-number"></span><span class="text-2xl text-slate-500"> / 21</span></p>
+      <h2 id="tier-name" class="mt-3 text-2xl font-extrabold text-slate-900"></h2>
+      <p id="tier-text" class="mt-3 text-slate-700"></p>
+      <p id="weakest-text" class="mt-3 text-slate-700"></p>
+      <p class="mt-5 text-sm font-semibold text-slate-900">Your next step: <span id="next-step" class="font-normal text-slate-700"></span></p>
+      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <a href="https://gavadha.github.io/Navaark-vantage/" target="_blank" rel="noopener" class="rounded-xl bg-[#1B2A4A] text-white px-6 py-3.5 font-bold hover:bg-[#2F3E5E] text-center">See what Vantage would show you →</a>
+        <a href="https://calendar.app.google/cm4nGc9spB4UnLk68" target="_blank" rel="noopener" class="rounded-xl border border-slate-200 bg-white px-6 py-3.5 font-bold text-slate-700 hover:bg-slate-50 text-center">Book a call</a>
+      </div>
+    </div>
+
+    <!-- LEAD FORM -->
+    <div id="lead" class="hidden mt-8 rounded-2xl border border-slate-200 p-8">
+      <h2 class="text-2xl font-extrabold text-slate-900">Send your score to Geetha</h2>
+      <p class="mt-2 text-slate-600">If you would like Navaark to look at your score and tell you what Vantage would show for your brand, fill this in. <strong>This opens your email app to send your score to Geetha</strong> — nothing is submitted to, or stored by, this website.</p>
+      <form id="lead-form" class="mt-6 space-y-4" novalidate>
+        <div>
+          <label for="lead-name" class="block text-sm font-semibold text-slate-900">Name</label>
+          <input id="lead-name" name="name" type="text" autocomplete="name" required class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3" />
+        </div>
+        <div>
+          <label for="lead-email" class="block text-sm font-semibold text-slate-900">Work email</label>
+          <input id="lead-email" name="email" type="email" autocomplete="email" required class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3" />
+        </div>
+        <div>
+          <label for="lead-company" class="block text-sm font-semibold text-slate-900">Company</label>
+          <input id="lead-company" name="company" type="text" autocomplete="organization" required class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3" />
+        </div>
+        <fieldset>
+          <legend class="text-sm font-semibold text-slate-900">Channels you sell through</legend>
+          <div class="mt-2 flex flex-wrap gap-4 text-sm text-slate-700">
+            <label><input type="checkbox" name="channels" value="Walmart" class="accent-[#1B2A4A]" /> Walmart</label>
+            <label><input type="checkbox" name="channels" value="Amazon" class="accent-[#1B2A4A]" /> Amazon</label>
+            <label><input type="checkbox" name="channels" value="Target" class="accent-[#1B2A4A]" /> Target</label>
+            <label><input type="checkbox" name="channels" value="DTC" class="accent-[#1B2A4A]" /> DTC</label>
+            <label><input type="checkbox" name="channels" value="Distributor" class="accent-[#1B2A4A]" /> Distributor</label>
+          </div>
+        </fieldset>
+        <div>
+          <label for="lead-revenue" class="block text-sm font-semibold text-slate-900">Annual revenue</label>
+          <select id="lead-revenue" name="revenue" class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 bg-white">
+            <option>Under $5M</option>
+            <option>$5M – $25M</option>
+            <option>$25M – $100M</option>
+            <option>Over $100M</option>
+            <option>Prefer not to say</option>
+          </select>
+        </div>
+        <p id="lead-error" class="hidden rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-800" role="alert"></p>
+        <button type="submit" class="w-full sm:w-auto rounded-xl bg-[#1B2A4A] text-white px-8 py-3.5 font-bold hover:bg-[#2F3E5E]">Open my email to send my score →</button>
+        <p class="text-sm text-slate-500">This opens your email app with a message to Geetha@navaark.com. You send it from your own email — nothing is submitted here.</p>
+      </form>
+      <div id="lead-sent" class="hidden mt-6 rounded-xl border border-slate-200 bg-slate-50 px-4 py-4">
+        <p class="font-semibold text-slate-900">Your email app should have opened with your score ready to send.</p>
+        <p class="mt-1 text-sm text-slate-600">If it did not open, email Geetha@navaark.com directly — or skip the email and book a call instead:</p>
+        <a href="https://calendar.app.google/cm4nGc9spB4UnLk68" target="_blank" rel="noopener" class="mt-4 inline-block rounded-xl bg-[#1B2A4A] text-white px-6 py-3.5 font-bold hover:bg-[#2F3E5E]">Book a call</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-slate-100 bg-slate-50">
+    <div class="mx-auto max-w-6xl px-5 py-12 grid gap-10 sm:grid-cols-3">
+      <div>
+        <a href="./index.html" class="flex items-center gap-2 font-extrabold tracking-tight text-lg text-slate-900"><img src="./logo.png" class="h-8 w-8 rounded-md" alt="" /> Navaark</a>
+        <p class="mt-3 text-sm text-slate-500 max-w-xs">Data + AI for CPG brands making faster retail decisions.</p>
+      </div>
+      <div class="text-sm">
+        <p class="font-semibold text-slate-900">Site</p>
+        <ul class="mt-3 space-y-2 text-slate-500">
+          <li><a href="./about.html" class="hover:text-slate-900">About</a></li>
+          <li><a href="./services.html" class="hover:text-slate-900">Services</a></li>
+          <li><a href="./vantage.html" class="hover:text-slate-900">Vantage</a></li>
+          <li><a href="./scorecard.html" class="hover:text-slate-900" aria-current="page">Retail Data Scorecard</a></li>
+          <li><a href="./roi.html" class="hover:text-slate-900">ROI calculator</a></li>
+          <li><a href="./insights/" class="hover:text-slate-900">Insights</a></li>
+          <li><a href="./index.html#contact" class="hover:text-slate-900">Contact</a></li>
+        </ul>
+      </div>
+      <div class="text-sm">
+        <p class="font-semibold text-slate-900">Legal</p>
+        <ul class="mt-3 space-y-2 text-slate-500">
+          <li><a href="./privacy.html" class="hover:text-slate-900">Privacy Policy</a></li>
+          <li><a href="./terms.html" class="hover:text-slate-900">Terms of Use</a></li>
+        </ul>
+        <p class="mt-4 text-slate-500"><a href="mailto:Geetha@navaark.com" class="hover:text-slate-900">Geetha@navaark.com</a></p>
+      </div>
+    </div>
+    <div class="border-t border-slate-200">
+      <div class="mx-auto max-w-6xl px-5 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400 text-center sm:text-left">
+        <span>© <span id="yr"></span> Navaark. All rights reserved.</span>
+        <span>Navaark is an independent advisory practice and is not affiliated with, sponsored by, or endorsed by Walmart Inc.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="./assets/analytics.js" defer></script>
+  <script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
+  <script>
+  (function () {
+    var QUESTIONS = [
+      { n: 1, key: "q1", label: "One view across channels", weak: "seeing all channels in one place" },
+      { n: 2, key: "q2", label: "Speed of answering sales questions", weak: "answering 'what changed?' quickly" },
+      { n: 3, key: "q3", label: "Manual reporting hours", weak: "manual reporting time" },
+      { n: 4, key: "q4", label: "Stockout surprises", weak: "catching stockouts early" },
+      { n: 5, key: "q5", label: "Deductions visibility", weak: "knowing what deductions cost and why" },
+      { n: 6, key: "q6", label: "Forecast for the next 4 weeks", weak: "seeing the next 4 weeks" },
+      { n: 7, key: "q7", label: "Channels sold through", weak: "selling through more channels" }
+    ];
+    var TIERS = [
+      { min: 0, max: 7, name: "Flying blind", text: "Your sales data is scattered, and the answers you need take too long to find. That is the most common starting point — and it is also where a single view changes the most, the fastest.", next: "try the live Vantage demo, then book a call and bring one question your team cannot answer quickly today." },
+      { min: 8, max: 14, name: "Patchwork view", text: "You have parts of the picture — some channels, some reports — but it is held together by manual work and spreadsheets. It works until someone is out, a portal changes, or a retailer asks a question you cannot answer on the spot.", next: "send your score to Geetha and ask what Vantage would show for your channels — the gaps above are exactly what it is built to close." },
+      { min: 15, max: 21, name: "Close — Vantage would finish it", text: "You already have a working view of sales. The remaining gaps are the expensive ones: the forecast, the early stockout warning, the deduction detail by reason. Vantage is built to finish those.", next: "book a call and see Vantage with your numbers — you are close enough that a demo on your own data is worth an hour." }
+    ];
+
+    var started = false;
+    var form = document.getElementById("scorecard-form");
+    var resultEl = document.getElementById("result");
+    var leadEl = document.getElementById("lead");
+    var score = null, tier = null, answers = {};
+
+    function track(name, params) {
+      if (window.NavaarkAnalytics) { window.NavaarkAnalytics.track(name, params); }
+    }
+
+    form.addEventListener("change", function () {
+      if (!started) {
+        started = true;
+        track("scorecard_start", {});
+      }
+    });
+
+    function chosen(fieldset) {
+      var el = fieldset.querySelector("input[type=radio]:checked");
+      return el ? el : null;
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var errorEl = document.getElementById("form-error");
+      var total = 0, missing = null;
+      answers = {};
+      QUESTIONS.forEach(function (q) {
+        var fs = form.querySelector('fieldset[data-q="' + q.n + '"]');
+        var el = chosen(fs);
+        if (!el) { if (!missing) { missing = fs; } return; }
+        total += parseInt(el.value, 10);
+        answers[q.key] = { label: q.label, value: parseInt(el.value, 10), text: el.parentNode.textContent.trim() };
+      });
+      if (missing) {
+        errorEl.textContent = "Please answer all 7 questions — the first unanswered one is highlighted below.";
+        errorEl.classList.remove("hidden");
+        missing.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+      errorEl.classList.add("hidden");
+      score = total;
+      tier = TIERS.filter(function (t) { return total >= t.min && total <= t.max; })[0];
+      document.getElementById("score-number").textContent = total;
+      document.getElementById("tier-name").textContent = tier.name;
+      document.getElementById("tier-text").textContent = tier.text;
+      var weak = QUESTIONS.filter(function (q) { return answers[q.key].value <= 1; });
+      document.getElementById("weakest-text").textContent = weak.length
+        ? "Your weakest spots: " + weak.map(function (q) { return q.weak; }).join("; ") + "."
+        : "No single weak spot stood out — your lowest scores are already at 2 or above.";
+      document.getElementById("next-step").textContent = tier.next;
+      resultEl.classList.remove("hidden");
+      leadEl.classList.remove("hidden");
+      resultEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      track("scorecard_complete", { score: total, tier: tier.name });
+    });
+
+    document.getElementById("lead-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var errorEl = document.getElementById("lead-error");
+      var name = document.getElementById("lead-name").value.trim();
+      var email = document.getElementById("lead-email").value.trim();
+      var company = document.getElementById("lead-company").value.trim();
+      if (!name || !email || !company) {
+        errorEl.textContent = "Please fill in your name, work email and company so Geetha knows who the score is from.";
+        errorEl.classList.remove("hidden");
+        return;
+      }
+      if (email.indexOf("@") < 1 || email.indexOf(".") < 0) {
+        errorEl.textContent = "That email address does not look right — please check it.";
+        errorEl.classList.remove("hidden");
+        return;
+      }
+      errorEl.classList.add("hidden");
+      var channels = Array.prototype.map.call(
+        document.querySelectorAll('input[name="channels"]:checked'),
+        function (c) { return c.value; }
+      ).join(", ") || "Not specified";
+      var revenue = document.getElementById("lead-revenue").value;
+      var lines = [
+        "Name: " + name,
+        "Work email: " + email,
+        "Company: " + company,
+        "Score: " + score + " / 21 (" + tier.name + ")",
+        "Channels: " + channels,
+        "Annual revenue: " + revenue,
+        "",
+        "Answers:"
+      ];
+      QUESTIONS.forEach(function (q) {
+        lines.push("Q" + q.n + " — " + q.label + ": " + answers[q.key].text);
+      });
+      lines.push("", "Sent from the Retail Data Scorecard on navaark.com.");
+      var mailto = "mailto:Geetha@navaark.com"
+        + "?subject=" + encodeURIComponent("Vantage scorecard — " + score + "/21")
+        + "&body=" + encodeURIComponent(lines.join("\n"));
+      window.location.href = mailto;
+      document.getElementById("lead-sent").classList.remove("hidden");
+    });
+  })();
+  </script>
+</body>
+</html>

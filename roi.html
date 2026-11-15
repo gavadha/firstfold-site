@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What's messy data costing you? | Navaark</title>
+  <meta name="description" content="Put in your reporting hours, deductions and stockouts — see the annual cost at stake when sales data is scattered across channels." />
+  <meta property="og:title" content="What's messy data costing you? | Navaark" />
+  <meta property="og:description" content="Put in your reporting hours, deductions and stockouts — see the annual cost at stake." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://navaark.com/roi.html" />
+  <meta property="og:image" content="https://navaark.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="What's messy data costing you? | Navaark" />
+  <meta name="twitter:description" content="Put in your reporting hours, deductions and stockouts — see the annual cost at stake." />
+  <meta name="twitter:image" content="https://navaark.com/og-image.jpg" />
+  <link rel="canonical" href="https://navaark.com/roi.html" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="./logo.png" />
+  <style>
+    html{scroll-behavior:smooth}
+    a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid #1B2A4A; outline-offset: 2px; }
+  </style>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+  <!-- NAV -->
+  <header class="sticky top-0 z-30 bg-white/85 backdrop-blur border-b border-slate-100">
+    <nav class="mx-auto max-w-6xl px-5 h-16 flex items-center justify-between">
+      <a href="./index.html" class="flex items-center gap-2 font-extrabold tracking-tight text-lg"><img src="./logo.png" class="h-9 w-9 rounded-md" alt="Navaark" /> Navaark</a>
+      <div class="hidden sm:flex items-center gap-6 text-sm text-slate-600">
+        <a href="./index.html#problem" class="hover:text-slate-900">The problem</a>
+        <a href="./services.html" class="hover:text-slate-900">Services</a>
+        <a href="./vantage.html" class="hover:text-slate-900">Vantage</a>
+        <a href="./about.html" class="hover:text-slate-900">About</a>
+        <a href="./insights/" class="hover:text-slate-900">Insights</a>
+        <a href="https://calendar.app.google/cm4nGc9spB4UnLk68" target="_blank" rel="noopener" class="rounded-lg bg-[#1B2A4A] text-white px-4 py-2 font-semibold hover:bg-[#2F3E5E]">Book a call</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- INTRO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(27,42,74,0.12),transparent)]"></div>
+    <div class="mx-auto max-w-3xl px-5 pt-20 pb-10 text-center">
+      <p class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs text-slate-600">ROI calculator · 4 numbers · 1 minute</p>
+      <h1 class="mt-5 text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.05] text-slate-900">What's messy data costing you?</h1>
+      <p class="mt-6 text-lg text-slate-600">Put in your own numbers. Nothing is sent anywhere — the calculation happens in your browser, and the numbers stay with you.</p>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section class="mx-auto max-w-3xl px-5 pb-8">
+    <div class="rounded-2xl border border-slate-200 p-8">
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div>
+          <label for="in-hours" class="block text-sm font-semibold text-slate-900">Hours per week on manual reporting</label>
+          <p class="mt-1 text-sm text-slate-500">Copying numbers between portals, spreadsheets and slides.</p>
+          <input id="in-hours" type="number" min="0" step="0.5" value="10" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3" />
+        </div>
+        <div>
+          <label for="in-rate" class="block text-sm font-semibold text-slate-900">Hourly cost of that person's time ($)</label>
+          <p class="mt-1 text-sm text-slate-500">Loaded cost — salary plus benefits is fine as a rough figure.</p>
+          <input id="in-rate" type="number" min="0" step="1" value="75" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3" />
+        </div>
+        <div>
+          <label for="in-deductions" class="block text-sm font-semibold text-slate-900">Deductions ($ per month)</label>
+          <p class="mt-1 text-sm text-slate-500">What retailers and distributors deduct, on average, each month.</p>
+          <input id="in-deductions" type="number" min="0" step="100" value="5000" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3" />
+        </div>
+        <div>
+          <label for="in-stockouts" class="block text-sm font-semibold text-slate-900">Stockouts / lost sales ($ per month)</label>
+          <p class="mt-1 text-sm text-slate-500">Your best estimate of sales lost to empty shelves or voids.</p>
+          <input id="in-stockouts" type="number" min="0" step="100" value="10000" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3" />
+        </div>
+      </div>
+      <button id="calc-btn" type="button" class="mt-8 w-full sm:w-auto rounded-xl bg-[#1B2A4A] text-white px-8 py-3.5 font-bold hover:bg-[#2F3E5E]">Run the numbers →</button>
+    </div>
+
+    <!-- RESULT -->
+    <div id="result" class="mt-8 rounded-2xl border border-slate-200 bg-[#1B2A4A] text-white p-8">
+      <p class="text-sm font-bold text-[#D7DEEA]">Annual cost at stake</p>
+      <p id="total" class="mt-2 text-5xl font-extrabold tracking-tight">$0</p>
+      <p class="mt-1 text-[#D7DEEA]">per year — in reporting time, deductions and lost sales.</p>
+      <div class="mt-6 space-y-3 text-sm">
+        <div class="flex justify-between gap-4 border-b border-white/15 pb-3"><span>Manual reporting time</span><strong id="line-manual">$0 / year</strong></div>
+        <div class="flex justify-between gap-4 border-b border-white/15 pb-3"><span>Deductions</span><strong id="line-deductions">$0 / year</strong></div>
+        <div class="flex justify-between gap-4"><span>Stockouts / lost sales</span><strong id="line-stockouts">$0 / year</strong></div>
+      </div>
+      <p id="readout" class="mt-6 text-[#D7DEEA]"></p>
+      <p class="mt-4 text-sm text-[#D7DEEA]">This is an estimate from the numbers you entered — the cost at stake, not a savings promise. Vantage does not claim to recover all of it; it shows you where it is, so you can act on it sooner.</p>
+      <p class="mt-3 text-sm text-[#D7DEEA]"><strong class="text-white">Vantage:</strong> Starter from $2,950 one-time · Core $4,950 one-time.</p>
+      <div class="mt-7 flex flex-col sm:flex-row gap-3">
+        <a href="https://gavadha.github.io/Navaark-vantage/" target="_blank" rel="noopener" class="rounded-xl bg-white text-[#1B2A4A] px-6 py-3.5 font-bold hover:bg-[#EEF1F6] text-center">See what Vantage would show you →</a>
+        <a href="https://calendar.app.google/cm4nGc9spB4UnLk68" target="_blank" rel="noopener" class="rounded-xl border border-white/40 px-6 py-3.5 font-bold hover:bg-white/10 text-center">Book a call</a>
+      </div>
+    </div>
+
+    <p class="mt-6 text-sm text-slate-500">Not sure about a number? Use your best guess — the point is the order of magnitude. If you would rather talk it through, <a href="https://calendar.app.google/cm4nGc9spB4UnLk68" target="_blank" rel="noopener" class="text-[#1B2A4A] underline">book a call</a> and bring the numbers you do have.</p>
+  </section>
+
+  <footer class="border-t border-slate-100 bg-slate-50">
+    <div class="mx-auto max-w-6xl px-5 py-12 grid gap-10 sm:grid-cols-3">
+      <div>
+        <a href="./index.html" class="flex items-center gap-2 font-extrabold tracking-tight text-lg text-slate-900"><img src="./logo.png" class="h-8 w-8 rounded-md" alt="" /> Navaark</a>
+        <p class="mt-3 text-sm text-slate-500 max-w-xs">Data + AI for CPG brands making faster retail decisions.</p>
+      </div>
+      <div class="text-sm">
+        <p class="font-semibold text-slate-900">Site</p>
+        <ul class="mt-3 space-y-2 text-slate-500">
+          <li><a href="./about.html" class="hover:text-slate-900">About</a></li>
+          <li><a href="./services.html" class="hover:text-slate-900">Services</a></li>
+          <li><a href="./vantage.html" class="hover:text-slate-900">Vantage</a></li>
+          <li><a href="./scorecard.html" class="hover:text-slate-900">Retail Data Scorecard</a></li>
+          <li><a href="./roi.html" class="hover:text-slate-900" aria-current="page">ROI calculator</a></li>
+          <li><a href="./insights/" class="hover:text-slate-900">Insights</a></li>
+          <li><a href="./index.html#contact" class="hover:text-slate-900">Contact</a></li>
+        </ul>
+      </div>
+      <div class="text-sm">
+        <p class="font-semibold text-slate-900">Legal</p>
+        <ul class="mt-3 space-y-2 text-slate-500">
+          <li><a href="./privacy.html" class="hover:text-slate-900">Privacy Policy</a></li>
+          <li><a href="./terms.html" class="hover:text-slate-900">Terms of Use</a></li>
+        </ul>
+        <p class="mt-4 text-slate-500"><a href="mailto:Geetha@navaark.com" class="hover:text-slate-900">Geetha@navaark.com</a></p>
+      </div>
+    </div>
+    <div class="border-t border-slate-200">
+      <div class="mx-auto max-w-6xl px-5 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400 text-center sm:text-left">
+        <span>© <span id="yr"></span> Navaark. All rights reserved.</span>
+        <span>Navaark is an independent advisory practice and is not affiliated with, sponsored by, or endorsed by Walmart Inc.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="./assets/analytics.js" defer></script>
+  <script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
+  <script>
+  (function () {
+    function num(id) {
+      var v = parseFloat(document.getElementById(id).value);
+      return isNaN(v) || v < 0 ? 0 : v;
+    }
+    function money(n) {
+      return "$" + Math.round(n).toLocaleString("en-US");
+    }
+    var tracked = false;
+    function calculate() {
+      var manual = num("in-hours") * 52 * num("in-rate");
+      var deductions = num("in-deductions") * 12;
+      var stockouts = num("in-stockouts") * 12;
+      var total = manual + deductions + stockouts;
+      document.getElementById("total").textContent = money(total);
+      document.getElementById("line-manual").textContent = money(manual) + " / year";
+      document.getElementById("line-deductions").textContent = money(deductions) + " / year";
+      document.getElementById("line-stockouts").textContent = money(stockouts) + " / year";
+      var biggest = "manual reporting time";
+      if (deductions >= manual && deductions >= stockouts) { biggest = "deductions"; }
+      else if (stockouts >= manual && stockouts >= deductions) { biggest = "stockouts and lost sales"; }
+      document.getElementById("readout").textContent = total > 0
+        ? "That's " + money(total) + " a year at stake — and your biggest piece is " + biggest + ". A single view does not make it disappear, but it shows you where it is while there is still time to act."
+        : "With the numbers as entered, the annual cost at stake is $0. If any of the four numbers should be higher, update it and run the numbers again.";
+      if (!tracked && total > 0) {
+        tracked = true;
+        if (window.NavaarkAnalytics) {
+          window.NavaarkAnalytics.track("calculator_complete", { cost_band: window.NavaarkAnalytics.costBand(total) });
+        }
+      }
+    }
+    ["in-hours", "in-rate", "in-deductions", "in-stockouts"].forEach(function (id) {
+      document.getElementById(id).addEventListener("input", calculate);
+    });
+    document.getElementById("calc-btn").addEventListener("click", calculate);
+    calculate();
+  })();
+  </script>
+</body>
+</html>
