@@ -7,7 +7,7 @@
 // accounts when they exist.
 // ---------------------------------------------------------------------------
 var GA_MEASUREMENT_ID = "G-THFLDCGV8W";
-var CLARITY_PROJECT_ID = "";
+var CLARITY_PROJECT_ID = "zeaj3wi6a3";
 
 (function () {
   "use strict";
