@@ -6,7 +6,7 @@
 // Do NOT invent IDs here — use the real ones from the GA4 and Clarity
 // accounts when they exist.
 // ---------------------------------------------------------------------------
-var GA_MEASUREMENT_ID = "";
+var GA_MEASUREMENT_ID = "G-THFLDCGV8W";
 var CLARITY_PROJECT_ID = "";
 
 (function () {
