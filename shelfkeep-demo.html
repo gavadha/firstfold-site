@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>ShelfKeep Dashboard</title>
+<style>
+  button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]) { min-height: 2rem; }
+  * { box-sizing: border-box; }
+  :root{
+    --navy:#0f2340;
+    --navy-2:#162f52;
+    --amber:#D97706;
+    --amber-soft:#FEF3C7;
+    --bg:#F1F4F8;
+    --card:#ffffff;
+    --ink:#17233a;
+    --muted:#5b6b82;
+    --line:#dbe2ec;
+    --red:#B42318;
+    --red-bg:#FEF2F2;
+    --watch:#9A6A00;
+    --watch-bg:#FFFAEB;
+    --green:#067647;
+    --green-bg:#ECFDF3;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0b1524;
+      --card:#13233c;
+      --ink:#e8edf5;
+      --muted:#a7b4c8;
+      --line:#2a3d5c;
+      --amber-soft:#3a2c10;
+      --red-bg:#3a1713;
+      --watch-bg:#33290d;
+      --green-bg:#0e2e1e;
+    }
+  }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif; line-height:1.5; }
+  a{ color:var(--amber); }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 16px 40px; }
+
+  /* Header */
+  header.top{
+    background:var(--navy); color:#fff; margin:0 -16px; padding:28px 16px 24px;
+  }
+  @media (min-width:1120px){ header.top{ border-radius:0 0 14px 14px; } }
+  .brand{ font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:#f5c26b; font-weight:700; margin:0 0 6px; }
+  h1{ font-size:34px; line-height:1.1; margin:0 0 8px; font-weight:800; letter-spacing:-0.01em; }
+  .tagline{ font-size:18px; margin:0 0 14px; color:#dbe6f5; }
+  .sample-note{
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.22);
+    border-radius:10px; padding:12px 14px; font-size:14.5px; color:#eef3fa; max-width:760px;
+  }
+  .sample-note strong{ color:#f5c26b; }
+  .sample-sales{ margin:12px 0 0; font-size:14px; color:#c9d7ec; }
+  .sample-sales strong{ color:#fff; }
+
+  section{ margin-top:28px; }
+  h2{ font-size:21px; margin:0 0 6px; font-weight:750; }
+  .sub{ color:var(--muted); font-size:14.5px; margin:0 0 14px; max-width:720px; }
+
+  /* KPI cards */
+  .kpis{ display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:22px; }
+  @media (max-width:900px){ .kpis{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:420px){ .kpis{ grid-template-columns:1fr 1fr; } }
+  .kpi{ background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; }
+  .kpi .label{ font-size:12.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); margin:0 0 6px; }
+  .kpi .value{ font-size:32px; font-weight:800; line-height:1; margin:0; }
+  .kpi .note{ font-size:13.5px; color:var(--muted); margin:8px 0 0; }
+  .kpi.risk .value{ color:var(--red); }
+  .kpi.bar{ border-top:4px solid var(--amber); }
+
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; }
+
+  /* Tables */
+  table{ width:100%; border-collapse:collapse; font-size:14.5px; }
+  th, td{ text-align:left; padding:10px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  thead th{ font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); border-bottom:2px solid var(--line); }
+  tbody tr:last-child td{ border-bottom:none; }
+  th button.sort{
+    background:none; border:none; padding:6px 2px; margin:-6px -2px; font:inherit; color:inherit;
+    text-transform:inherit; letter-spacing:inherit; cursor:pointer; font-weight:700; min-height:36px;
+    display:inline-flex; align-items:center; gap:4px;
+  }
+  th button.sort:hover{ color:var(--amber); }
+  th button.sort .arrow{ font-size:11px; color:var(--amber); }
+  td.num, th.num{ text-align:right; }
+  td.num button.sort{ justify-content:flex-end; }
+  .pill{ display:inline-block; padding:2px 9px; border-radius:999px; font-size:12.5px; font-weight:700; white-space:nowrap; }
+  .pill.high{ background:var(--red-bg); color:var(--red); }
+  .pill.watch{ background:var(--watch-bg); color:var(--watch); }
+  .trend-down{ color:var(--red); font-weight:600; }
+  .trend-flat{ color:var(--muted); font-weight:600; }
+
+  /* Filter */
+  .filter-row{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 12px; }
+  .filter-row .flabel{ font-size:13px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-right:2px; }
+  .filter-btn{
+    border:1px solid var(--line); background:var(--card); color:var(--ink);
+    border-radius:999px; padding:8px 14px; font-size:14px; cursor:pointer; min-height:38px; font-weight:600;
+  }
+  .filter-btn[aria-pressed="true"]{ background:var(--navy); color:#fff; border-color:var(--navy); }
+  @media (prefers-color-scheme: dark){ .filter-btn[aria-pressed="true"]{ background:var(--amber); border-color:var(--amber); color:#1a1200; } }
+  .count-line{ font-size:13.5px; color:var(--muted); margin:10px 0 0; }
+
+  /* Chart */
+  .chart-wrap{ width:100%; }
+  svg.chart{ width:100%; height:auto; display:block; }
+  .legend{ display:flex; flex-wrap:wrap; gap:16px; font-size:13.5px; color:var(--muted); margin-top:10px; }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .swatch{ width:22px; height:4px; border-radius:2px; display:inline-block; }
+  .swatch.line{ background:var(--navy-2); }
+  @media (prefers-color-scheme: dark){ .swatch.line{ background:#7ea6dd; } }
+  .swatch.barline{ background:var(--amber); height:0; border-top:3px dashed var(--amber); }
+
+  /* Actions */
+  .actions{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:720px){ .actions{ grid-template-columns:1fr; } }
+  .action{ background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; display:flex; gap:14px; }
+  .action .n{
+    flex:0 0 auto; width:34px; height:34px; border-radius:50%; background:var(--amber); color:#fff;
+    font-weight:800; display:flex; align-items:center; justify-content:center; font-size:16px;
+  }
+  .action h3{ margin:2px 0 4px; font-size:16px; }
+  .action p{ margin:0; font-size:14.5px; color:var(--muted); }
+  .price{
+    margin-top:14px; background:var(--navy); color:#fff; border-radius:12px; padding:18px;
+    display:flex; flex-wrap:wrap; gap:8px 18px; align-items:baseline; justify-content:space-between;
+  }
+  .price .amount{ font-size:26px; font-weight:800; }
+  .price .amount small{ font-size:15px; font-weight:600; color:#c9d7ec; }
+  .price .terms{ font-size:14.5px; color:#dbe6f5; margin:0; }
+
+  footer{ margin-top:34px; border-top:1px solid var(--line); padding-top:18px; display:flex; flex-wrap:wrap; gap:10px 20px; align-items:center; justify-content:space-between; }
+  footer p{ margin:0; font-size:14px; color:var(--muted); }
+  footer a{ font-weight:700; text-decoration:none; display:inline-flex; align-items:center; min-height:36px; padding:4px 2px; }
+  footer a:hover{ text-decoration:underline; }
+
+  /* Mobile table reflow */
+  @media (max-width:720px){
+    h1{ font-size:28px; }
+    .card{ padding:14px; }
+    table.responsive thead{ display:block; margin-bottom:10px; }
+    table.responsive thead tr{ display:flex; flex-wrap:wrap; gap:6px; }
+    table.responsive thead th{ border:none; padding:0; }
+    table.responsive thead th button.sort{
+      border:1px solid var(--line); border-radius:999px; padding:6px 10px; margin:0; text-transform:none; letter-spacing:0; font-size:13px;
+    }
+    table.responsive tbody tr{ display:block; border:1px solid var(--line); border-radius:10px; padding:8px 12px; margin-bottom:10px; }
+    table.responsive tbody td{ display:flex; justify-content:space-between; gap:14px; border-bottom:1px dashed var(--line); padding:7px 0; text-align:right; }
+    table.responsive tbody td:last-child{ border-bottom:none; }
+    table.responsive tbody td::before{ content:attr(data-label); font-weight:700; font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); text-align:left; padding-top:2px; }
+    table.responsive td.num{ text-align:right; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 1. Header -->
+  <header class="top">
+    <p class="brand">ShelfKeep by Navaark</p>
+    <h1>Keep your shelf. Keep your doors.</h1>
+    <p class="tagline">We watch the doors that are close to being lost, and we tell you what to do this week to keep them.</p>
+    <div class="sample-note">
+      <strong>Sample data.</strong> This page uses sample data for Golden Hour Snacks. It shows the framework many clients use. We put your numbers in to show your doors.
+    </div>
+    <p class="sample-sales">Total sample sales: <strong>$9.86 million</strong>. Brand shown: Golden Hour Snacks, a food and beverage brand.</p>
+  </header>
+
+  <!-- 2. KPI cards -->
+  <div class="kpis" role="list" aria-label="Key numbers">
+    <div class="kpi" role="listitem">
+      <p class="label">Total doors</p>
+      <p class="value">1,240</p>
+      <p class="note">Stores that carry the brand today.</p>
+    </div>
+    <div class="kpi risk" role="listitem">
+      <p class="label">Doors at risk</p>
+      <p class="value">87</p>
+      <p class="note">7 percent of doors. Below the bar for 4 weeks or more.</p>
+    </div>
+    <div class="kpi bar" role="listitem">
+      <p class="label">Average velocity</p>
+      <p class="value">42</p>
+      <p class="note">Units per store per week. The bar is 35.</p>
+    </div>
+    <div class="kpi" role="listitem">
+      <p class="label">SKUs at risk</p>
+      <p class="value">3 of 8</p>
+      <p class="note">Products that are slow in too many stores.</p>
+    </div>
+    <div class="kpi" role="listitem">
+      <p class="label">Weeks to next reset</p>
+      <p class="value">9</p>
+      <p class="note">Time left to lift slow doors before the buyer decides.</p>
+    </div>
+  </div>
+
+  <p class="sub" style="margin-top:16px;">The buyer watches velocity, sales per store per week. A door below the bar for weeks gets dropped at the reset. This page shows which doors are in that spot, and what to do about them now.</p>
+
+  <!-- 3. Distribution health by channel -->
+  <section aria-labelledby="health-h">
+    <h2 id="health-h">Distribution health by channel</h2>
+    <p class="sub">Tap a column name to sort the table.</p>
+    <div class="card">
+      <table class="sortable responsive" id="health-table">
+        <thead>
+          <tr>
+            <th scope="col"><button class="sort" type="button" data-sort>Channel</button></th>
+            <th scope="col" class="num"><button class="sort" type="button" data-sort>Doors</button></th>
+            <th scope="col" class="num"><button class="sort" type="button" data-sort>Average velocity</button></th>
+            <th scope="col" class="num"><button class="sort" type="button" data-sort>Doors below the bar</button></th>
+            <th scope="col" class="num"><button class="sort" type="button" data-sort>Share at risk</button></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Channel">Walmart</td>
+            <td data-label="Doors" class="num" data-val="520">520</td>
+            <td data-label="Average velocity" class="num" data-val="44">44</td>
+            <td data-label="Doors below the bar" class="num" data-val="41">41</td>
+            <td data-label="Share at risk" class="num" data-val="8">8%</td>
+          </tr>
+          <tr>
+            <td data-label="Channel">Target</td>
+            <td data-label="Doors" class="num" data-val="310">310</td>
+            <td data-label="Average velocity" class="num" data-val="39">39</td>
+            <td data-label="Doors below the bar" class="num" data-val="22">22</td>
+            <td data-label="Share at risk" class="num" data-val="7">7%</td>
+          </tr>
+          <tr>
+            <td data-label="Channel">Regional grocery</td>
+            <td data-label="Doors" class="num" data-val="410">410</td>
+            <td data-label="Average velocity" class="num" data-val="41">41</td>
+            <td data-label="Doors below the bar" class="num" data-val="24">24</td>
+            <td data-label="Share at risk" class="num" data-val="6">6%</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="count-line">Velocity is units per store per week. The bar is 35 in every channel.</p>
+    </div>
+  </section>
+
+  <!-- 4. Velocity trend chart -->
+  <section aria-labelledby="trend-h">
+    <h2 id="trend-h">Velocity trend, last 12 weeks</h2>
+    <p class="sub">Sample data. Total velocity per store per week, against the bar of 35 that the buyer watches. Sales dipped in weeks 7 and 8, then came back up.</p>
+    <div class="card">
+      <div class="chart-wrap">
+        <svg class="chart" viewBox="0 0 720 300" role="img" aria-label="Line chart of sample velocity per store per week over 12 weeks. Values run from 38 to 45, dip to 38 in weeks 7 and 8, and recover to 43 by week 12. The buyer bar is 35.">
+          <!-- plot area: x from 56 to 700, y for value v: y = 260 - (v-30)*16 ; v=30 -> 260, v=50 -> -60 clamp; use scale: v=30 y=252, v=48 y=36 -->
+          <!-- gridlines at 35, 40, 45 -->
+          <line x1="56" y1="192" x2="700" y2="192" stroke="var(--line)" stroke-width="1"/>
+          <line x1="56" y1="132" x2="700" y2="132" stroke="var(--line)" stroke-width="1"/>
+          <line x1="56" y1="72" x2="700" y2="72" stroke="var(--line)" stroke-width="1"/>
+          <text x="48" y="196" text-anchor="end" font-size="12" fill="var(--muted)">35</text>
+          <text x="48" y="136" text-anchor="end" font-size="12" fill="var(--muted)">40</text>
+          <text x="48" y="76" text-anchor="end" font-size="12" fill="var(--muted)">45</text>
+          <!-- bar line at 35 -->
+          <line x1="56" y1="192" x2="700" y2="192" stroke="#D97706" stroke-width="2.5" stroke-dasharray="7 5"/>
+          <text x="700" y="182" text-anchor="end" font-size="12" font-weight="700" fill="#D97706">Bar: 35</text>
+          <!-- velocity line: points wk1..12 x=56+ (i-1)*58.5 approx -->
+          <polyline fill="none" stroke="#2f5b8f" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+            points="56,120 115,108 173,96 232,84 290,72 349,108 407,156 466,156 524,132 583,120 641,108 700,96"/>
+          <g fill="#2f5b8f">
+            <circle cx="56" cy="120" r="4"/><circle cx="115" cy="108" r="4"/><circle cx="173" cy="96" r="4"/>
+            <circle cx="232" cy="84" r="4"/><circle cx="290" cy="72" r="4"/><circle cx="349" cy="108" r="4"/>
+            <circle cx="407" cy="156" r="4"/><circle cx="466" cy="156" r="4"/><circle cx="524" cy="132" r="4"/>
+            <circle cx="583" cy="120" r="4"/><circle cx="641" cy="108" r="4"/><circle cx="700" cy="96" r="4"/>
+          </g>
+          <g font-size="12" fill="var(--muted)" text-anchor="middle">
+            <text x="56" y="282">Wk 1</text><text x="115" y="282">Wk 2</text><text x="173" y="282">Wk 3</text>
+            <text x="232" y="282">Wk 4</text><text x="290" y="282">Wk 5</text><text x="349" y="282">Wk 6</text>
+            <text x="407" y="282">Wk 7</text><text x="466" y="282">Wk 8</text><text x="524" y="282">Wk 9</text>
+            <text x="583" y="282">Wk 10</text><text x="641" y="282">Wk 11</text><text x="700" y="282">Wk 12</text>
+          </g>
+          <text x="407" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="#B42318">38</text>
+          <text x="700" y="84" text-anchor="end" font-size="12" font-weight="700" fill="var(--ink)">43</text>
+        </svg>
+      </div>
+      <div class="legend">
+        <span><span class="swatch line"></span> Velocity per store per week</span>
+        <span><span class="swatch barline"></span> Buyer bar: 35</span>
+        <span>Sample data</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Stores at risk -->
+  <section aria-labelledby="stores-h">
+    <h2 id="stores-h">Stores at risk</h2>
+    <p class="sub">Every store here is below the bar of 35. Tap a column name to sort. Use the buttons to see one channel at a time.</p>
+    <div class="filter-row" role="group" aria-label="Filter stores by channel">
+      <span class="flabel" id="filter-label">Channel</span>
+      <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">All channels</button>
+      <button type="button" class="filter-btn" data-filter="Walmart" aria-pressed="false">Walmart</button>
+      <button type="button" class="filter-btn" data-filter="Target" aria-pressed="false">Target</button>
+      <button type="button" class="filter-btn" data-filter="Regional grocery" aria-pressed="false">Regional grocery</button>
+    </div>
+    <div class="card">
+      <table class="sortable responsive" id="stores-table">
+        <thead>
+          <tr>
+            <th scope="col"><button class="sort" type="button" data-sort>Store</button></th>
+            <th scope="col"><button class="sort" type="button" data-sort>Channel</button></th>
+            <th scope="col" class="num"><button class="sort" type="button" data-sort>Velocity</button></th>
+            <th scope="col"><button class="sort" type="button" data-sort>Trend</button></th>
+            <th scope="col" class="num"><button class="sort" type="button" data-sort>Weeks of supply</button></th>
+            <th scope="col"><button class="sort" type="button" data-sort>Risk</button></th>
+            <th scope="col"><button class="sort" type="button" data-sort>What to do</button></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-channel="Walmart">
+            <td data-label="Store">Bentonville, AR</td>
+            <td data-label="Channel">Walmart</td>
+            <td data-label="Velocity" class="num" data-val="22">22</td>
+            <td data-label="Trend"><span class="trend-down">Down</span></td>
+            <td data-label="Weeks of supply" class="num" data-val="9">9</td>
+            <td data-label="Risk"><span class="pill high">High</span></td>
+            <td data-label="What to do">Talk to the buyer about this store</td>
+          </tr>
+          <tr data-channel="Walmart">
+            <td data-label="Store">Rogers, AR</td>
+            <td data-label="Channel">Walmart</td>
+            <td data-label="Velocity" class="num" data-val="18">18</td>
+            <td data-label="Trend"><span class="trend-down">Down</span></td>
+            <td data-label="Weeks of supply" class="num" data-val="11">11</td>
+            <td data-label="Risk"><span class="pill high">High</span></td>
+            <td data-label="What to do">Stop shipping this product here</td>
+          </tr>
+          <tr data-channel="Walmart">
+            <td data-label="Store">Springdale, AR</td>
+            <td data-label="Channel">Walmart</td>
+            <td data-label="Velocity" class="num" data-val="27">27</td>
+            <td data-label="Trend"><span class="trend-flat">Flat</span></td>
+            <td data-label="Weeks of supply" class="num" data-val="8">8</td>
+            <td data-label="Risk"><span class="pill watch">Watch</span></td>
+            <td data-label="What to do">Fund a markdown here</td>
+          </tr>
+          <tr data-channel="Walmart">
+            <td data-label="Store">Fayetteville, AR</td>
+            <td data-label="Channel">Walmart</td>
+            <td data-label="Velocity" class="num" data-val="31">31</td>
+            <td data-label="Trend"><span class="trend-down">Down</span></td>
+            <td data-label="Weeks of supply" class="num" data-val="7">7</td>
+            <td data-label="Risk"><span class="pill watch">Watch</span></td>
+            <td data-label="What to do">Talk to the buyer about this store</td>
+          </tr>
+          <tr data-channel="Target">
+            <td data-label="Store">Tulsa, OK</td>
+            <td data-label="Channel">Target</td>
+            <td data-label="Velocity" class="num" data-val="24">24</td>
+            <td data-label="Trend"><span class="trend-down">Down</span></td>
+            <td data-label="Weeks of supply" class="num" data-val="10">10</td>
+            <td data-label="Risk"><span class="pill high">High</span></td>
+            <td data-label="What to do">Fund a markdown here</td>
+          </tr>
+          <tr data-channel="Target">
+            <td data-label="Store">Little Rock, AR</td>
+            <td data-label="Channel">Target</td>
+            <td data-label="Velocity" class="num" data-val="29">29</td>
+            <td data-label="Trend"><span class="trend-flat">Flat</span></td>
+            <td data-label="Weeks of supply" class="num" data-val="6">6</td>
+            <td data-label="Risk"><span class="pill watch">Watch</span></td>
+            <td data-label="What to do">Talk to the buyer about this store</td>
+          </tr>
+          <tr data-channel="Regional grocery">
+            <td data-label="Store">Dallas, TX</td>
+            <td data-label="Channel">Regional grocery</td>
+            <td data-label="Velocity" class="num" data-val="20">20</td>
+            <td data-label="Trend"><span class="trend-down">Down</span></td>
+            <td data-label="Weeks of supply" class="num" data-val="9">9</td>
+            <td data-label="Risk"><span class="pill high">High</span></td>
+            <td data-label="What to do">Stop shipping this product here</td>
+          </tr>
+          <tr data-channel="Regional grocery">
+            <td data-label="Store">Houston, TX</td>
+            <td data-label="Channel">Regional grocery</td>
+            <td data-label="Velocity" class="num" data-val="33">33</td>
+            <td data-label="Trend"><span class="trend-flat">Flat</span></td>
+            <td data-label="Weeks of supply" class="num" data-val="6">6</td>
+            <td data-label="Risk"><span class="pill watch">Watch</span></td>
+            <td data-label="What to do">Fund a markdown here</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="count-line" id="stores-count">Showing 8 stores.</p>
+      <p class="count-line">Velocity is units per store per week. Weeks of supply is stock on hand at the current rate of sale.</p>
+    </div>
+  </section>
+
+  <!-- 6. SKUs at risk -->
+  <section aria-labelledby="skus-h">
+    <h2 id="skus-h">SKUs at risk</h2>
+    <p class="sub">Three of the eight products are slow in too many stores. Tap a column name to sort.</p>
+    <div class="card">
+      <table class="sortable responsive" id="skus-table">
+        <thead>
+          <tr>
+            <th scope="col"><button class="sort" type="button" data-sort>Product</button></th>
+            <th scope="col" class="num"><button class="sort" type="button" data-sort>Doors below the bar</button></th>
+            <th scope="col"><button class="sort" type="button" data-sort>What we see</button></th>
+            <th scope="col"><button class="sort" type="button" data-sort>What to do</button></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Product">Honey Oat Bar</td>
+            <td data-label="Doors below the bar" class="num" data-val="214">214</td>
+            <td data-label="What we see">Slow in the south</td>
+            <td data-label="What to do">Stop shipping to the slowest 23 stores</td>
+          </tr>
+          <tr>
+            <td data-label="Product">Cocoa Crunch</td>
+            <td data-label="Doors below the bar" class="num" data-val="96">96</td>
+            <td data-label="What we see">Velocity falling for 6 weeks</td>
+            <td data-label="What to do">Fund a markdown in 40 stores</td>
+          </tr>
+          <tr>
+            <td data-label="Product">Sea Salt Caramel</td>
+            <td data-label="Doors below the bar" class="num" data-val="58">58</td>
+            <td data-label="What we see">Short dated lots in 12 stores</td>
+            <td data-label="What to do">Ask the buyer to move stock to faster stores</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="count-line">Moving stock is the retailer call, not the brand call. We write the ask. You take it to the buyer.</p>
+    </div>
+  </section>
+
+  <!-- 7. What to do this week -->
+  <section aria-labelledby="week-h">
+    <h2 id="week-h">What to do this week</h2>
+    <p class="sub">Four moves. Do these before the next weekly memo.</p>
+    <div class="actions">
+      <div class="action">
+        <div class="n" aria-hidden="true">1</div>
+        <div>
+          <h3>Call the buyer about the 12 worst stores</h3>
+          <p>Do this before the reset. Show the buyer the plan for each store, not just the low number.</p>
+        </div>
+      </div>
+      <div class="action">
+        <div class="n" aria-hidden="true">2</div>
+        <div>
+          <h3>Fund a markdown in 40 stores</h3>
+          <p>Use it where Cocoa Crunch is slow. A small cut now is better than a lost door at the reset.</p>
+        </div>
+      </div>
+      <div class="action">
+        <div class="n" aria-hidden="true">3</div>
+        <div>
+          <h3>Stop shipping Honey Oat Bar to the slowest 23 stores</h3>
+          <p>More stock will not fix a slow store. It only adds weeks of supply.</p>
+        </div>
+      </div>
+      <div class="action">
+        <div class="n" aria-hidden="true">4</div>
+        <div>
+          <h3>Ask the buyer to move short dated stock</h3>
+          <p>Sea Salt Caramel in slow stores will not sell in time. Ask the buyer to move it to faster stores.</p>
+        </div>
+      </div>
+    </div>
+    <div class="price">
+      <p class="amount">$1,500 <small>a month per brand</small></p>
+      <p class="terms">Weekly memo. Cancel anytime.</p>
+    </div>
+  </section>
+
+  <!-- 8. Footer -->
+  <footer>
+    <p>ShelfKeep by Navaark, Bentonville, Arkansas.</p>
+    <a href="https://navaark.com">Book a call</a>
+  </footer>
+
+</div>
+<script>
+(function(){
+  // Sortable tables: click a column header button to sort.
+  function cellValue(td){
+    if(!td) return "";
+    if(td.hasAttribute("data-val")) return td.getAttribute("data-val");
+    return td.textContent.trim();
+  }
+  function isNum(v){ return v !== "" && !isNaN(parseFloat(v)); }
+
+  document.querySelectorAll("table.sortable").forEach(function(table){
+    var buttons = table.querySelectorAll("thead th button[data-sort]");
+    buttons.forEach(function(btn, colIndex){
+      btn.addEventListener("click", function(){
+        var tbody = table.querySelector("tbody");
+        var rows = Array.prototype.slice.call(tbody.querySelectorAll("tr"));
+        var current = btn.getAttribute("data-dir");
+        var dir = current === "asc" ? "desc" : "asc";
+        buttons.forEach(function(b){
+          b.removeAttribute("data-dir");
+          var a = b.querySelector(".arrow"); if(a) a.remove();
+        });
+        btn.setAttribute("data-dir", dir);
+        var arrow = document.createElement("span");
+        arrow.className = "arrow"; arrow.setAttribute("aria-hidden","true");
+        arrow.textContent = dir === "asc" ? "▲" : "▼";
+        btn.appendChild(arrow);
+
+        rows.sort(function(r1, r2){
+          var v1 = cellValue(r1.children[colIndex]);
+          var v2 = cellValue(r2.children[colIndex]);
+          var cmp;
+          if(isNum(v1) && isNum(v2)){ cmp = parseFloat(v1) - parseFloat(v2); }
+          else { cmp = v1.localeCompare(v2); }
+          return dir === "asc" ? cmp : -cmp;
+        });
+        rows.forEach(function(r){ tbody.appendChild(r); });
+      });
+    });
+  });
+
+  // Channel filter for the stores table.
+  var filterBtns = document.querySelectorAll(".filter-btn");
+  var storesTable = document.getElementById("stores-table");
+  var storesCount = document.getElementById("stores-count");
+  filterBtns.forEach(function(btn){
+    btn.addEventListener("click", function(){
+      filterBtns.forEach(function(b){ b.setAttribute("aria-pressed","false"); });
+      btn.setAttribute("aria-pressed","true");
+      var f = btn.getAttribute("data-filter");
+      var shown = 0;
+      storesTable.querySelectorAll("tbody tr").forEach(function(row){
+        var match = (f === "all" || row.getAttribute("data-channel") === f);
+        row.style.display = match ? "" : "none";
+        if(match) shown++;
+      });
+      storesCount.textContent = "Showing " + shown + (shown === 1 ? " store." : " stores.");
+    });
+  });
+})();
+</script>
+</body>
+</html>
