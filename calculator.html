@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Price calculator | Vantage by Navaark</title>
+  <meta name="description" content="Estimate what Vantage by Navaark costs for your brand. Put in your channels, SKUs and weeks of history. Your exact quote is fixed in writing after a short call." />
+  <meta property="og:title" content="Price calculator | Vantage by Navaark" />
+  <meta property="og:description" content="Estimate what Vantage by Navaark costs for your brand, from your channels, SKUs and weeks of history." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://navaark.com/calculator.html" />
+  <meta property="og:image" content="https://navaark.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Price calculator | Vantage by Navaark" />
+  <meta name="twitter:description" content="Estimate what Vantage by Navaark costs for your brand." />
+  <meta name="twitter:image" content="https://navaark.com/og-image.jpg" />
+  <link rel="canonical" href="https://navaark.com/calculator.html" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="./logo.png" />
+  <style>
+    html{scroll-behavior:smooth}
+    a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid #1B2A4A; outline-offset: 2px; }
+  </style>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+  <!-- NAV -->
+  <header class="sticky top-0 z-30 bg-white/85 backdrop-blur border-b border-slate-100">
+    <nav class="mx-auto max-w-6xl px-5 h-16 flex items-center justify-between">
+      <a href="./index.html" class="flex items-center gap-2 font-extrabold tracking-tight text-lg"><img src="./logo.png" class="h-9 w-9 rounded-md" alt="Navaark" /> Navaark</a>
+      <div class="hidden sm:flex items-center gap-6 text-sm text-slate-600">
+        <a href="./index.html#problem" class="hover:text-slate-900">The problem</a>
+        <a href="./services.html" class="hover:text-slate-900">Services</a>
+        <a href="./vantage.html" class="hover:text-slate-900">Vantage</a>
+        <a href="./shelfkeep.html" class="hover:text-slate-900">ShelfKeep</a>
+        <a href="./signals.html" class="hover:text-slate-900">Signals</a>
+        <a href="./about.html" class="hover:text-slate-900">About</a>
+        <a href="./insights/" class="hover:text-slate-900">Insights</a>
+        <a href="https://calendar.app.google/cm4nGc9spB4UnLk68" target="_blank" rel="noopener" class="rounded-lg bg-[#1B2A4A] text-white px-4 py-2 font-semibold hover:bg-[#2F3E5E]">Book a call</a>
+      </div>
+      <button type="button" class="sm:hidden rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700" aria-expanded="false" aria-controls="mobile-menu" onclick="var m=document.getElementById('mobile-menu');var o=m.classList.toggle('hidden');this.setAttribute('aria-expanded',String(!o));this.textContent=o?'Close':'Menu';">Menu</button>
+    </nav>
+    <div id="mobile-menu" class="hidden sm:hidden border-t border-slate-100 bg-white px-5 py-3 text-sm">
+      <a href="./index.html#problem" class="block py-2 text-slate-700 hover:text-slate-900">The problem</a>
+      <a href="./services.html" class="block py-2 text-slate-700 hover:text-slate-900">Services</a>
+      <a href="./vantage.html" class="block py-2 text-slate-700 hover:text-slate-900">Vantage</a>
+      <a href="./shelfkeep.html" class="block py-2 text-slate-700 hover:text-slate-900">ShelfKeep</a>
+      <a href="./signals.html" class="block py-2 text-slate-700 hover:text-slate-900">Signals</a>
+      <a href="./about.html" class="block py-2 text-slate-700 hover:text-slate-900">About</a>
+      <a href="./insights/" class="block py-2 text-slate-700 hover:text-slate-900">Insights</a>
+      <a href="https://calendar.app.google/cm4nGc9spB4UnLk68" target="_blank" rel="noopener" class="mt-2 inline-block rounded-lg bg-[#1B2A4A] text-white px-4 py-2 font-semibold">Book a call</a>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(27,42,74,0.12),transparent)]"></div>
+    <div class="mx-auto max-w-3xl px-5 pt-20 pb-10 text-center">
+      <p class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs text-slate-600">Price calculator · Vantage and ShelfKeep</p>
+      <h1 class="mt-5 text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.05] text-slate-900">What would Vantage cost for your brand?</h1>
+      <p class="mt-6 text-lg text-slate-600">Put in your volumes. This is an estimate, not a quote. Your exact quote is fixed in writing after a short call. Nothing is sent anywhere — the calculation happens in your browser, and the numbers stay with you.</p>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section class="mx-auto max-w-3xl px-5 pb-8">
+    <div class="rounded-2xl border border-slate-200 p-8">
+      <div class="grid sm:grid-cols-3 gap-6">
+        <div>
+          <label for="in-channels" class="block text-sm font-semibold text-slate-900">Channels</label>
+          <p class="mt-1 text-sm text-slate-500">How many channels do you sell in? Walmart, Amazon, Target, Whole Foods, Sprouts, DTC, and more.</p>
+          <input id="in-channels" type="number" min="1" step="1" value="2" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3" />
+        </div>
+        <div>
+          <label for="in-skus" class="block text-sm font-semibold text-slate-900">SKUs</label>
+          <p class="mt-1 text-sm text-slate-500">How many products do you want in the view?</p>
+          <input id="in-skus" type="number" min="1" step="1" value="10" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3" />
+        </div>
+        <div>
+          <label for="in-weeks" class="block text-sm font-semibold text-slate-900">Weeks of history</label>
+          <p class="mt-1 text-sm text-slate-500">How far back should we load? 26 weeks is about 6 months, 52 is a full year.</p>
+          <input id="in-weeks" type="number" min="1" step="1" value="26" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3" />
+        </div>
+      </div>
+      <button id="calc-btn" type="button" class="mt-8 w-full sm:w-auto rounded-xl bg-[#1B2A4A] text-white px-8 py-3.5 font-bold hover:bg-[#2F3E5E]">Estimate my price →</button>
+    </div>
+
+    <!-- RESULT -->
+    <div id="result" class="mt-8 rounded-2xl border border-slate-200 bg-[#1B2A4A] text-white p-8">
+      <p class="text-sm font-bold text-[#D7DEEA]">Your estimated one-time price</p>
+      <p id="total" class="mt-2 text-5xl font-extrabold tracking-tight">$1,950</p>
+      <p id="scope" class="mt-1 text-[#D7DEEA]">Smallest scope — 2 channels, up to 10 SKUs, 26 weeks of history.</p>
+      <div class="mt-6 space-y-3 text-sm">
+        <div class="flex justify-between gap-4 border-b border-white/15 pb-3"><span>Both products, Vantage and ShelfKeep</span><strong>Included</strong></div>
+        <div class="flex justify-between gap-4 border-b border-white/15 pb-3"><span>Setup done for you</span><strong>Included</strong></div>
+        <div class="flex justify-between gap-4 border-b border-white/15 pb-3"><span>90 days of fixes</span><strong>Included</strong></div>
+        <div class="flex justify-between gap-4"><span>Annual support, discounted</span><strong>$500 / year</strong></div>
+      </div>
+      <p class="mt-6 text-[#D7DEEA]">This is an estimate. Your exact quote is fixed in writing after a short call, and it does not change unless your scope changes. Your exact quote also looks at how many stores you sell in.</p>
+      <div class="mt-7 flex flex-col sm:flex-row gap-3">
+        <a href="https://calendar.app.google/cm4nGc9spB4UnLk68" target="_blank" rel="noopener" class="rounded-xl bg-white text-[#1B2A4A] px-6 py-3.5 font-bold hover:bg-[#EEF1F6] text-center">Book a call to get your exact quote</a>
+        <a href="https://gavadha.github.io/Navaark-vantage/" target="_blank" rel="noopener" class="rounded-xl border border-white/40 px-6 py-3.5 font-bold hover:bg-white/10 text-center">Try the live demo →</a>
+      </div>
+    </div>
+
+    <p class="mt-6 text-sm text-slate-500">Not sure about a number? Use your best guess — the point is the range. If you would rather talk it through, <a href="https://calendar.app.google/cm4nGc9spB4UnLk68" target="_blank" rel="noopener" class="text-[#1B2A4A] underline">book a call</a> and bring the numbers you do have.</p>
+  </section>
+
+  <!-- RATE TABLE -->
+  <section class="mx-auto max-w-3xl px-5 pb-16">
+    <h2 class="text-2xl font-extrabold tracking-tight text-slate-900">The rates behind the estimate</h2>
+    <p class="mt-3 text-slate-600">One price covers both Vantage and ShelfKeep. The price moves with your data volume: channels, SKUs and weeks of history.</p>
+    <div class="mt-6 overflow-x-auto rounded-2xl border border-slate-200">
+      <table class="w-full text-left text-sm">
+        <thead>
+          <tr class="border-b border-slate-200 bg-slate-50 text-slate-900">
+            <th class="px-4 py-3 font-bold">Scope</th>
+            <th class="px-4 py-3 font-bold">What it covers</th>
+            <th class="px-4 py-3 text-right font-bold">One-time price</th>
+          </tr>
+        </thead>
+        <tbody class="text-slate-600">
+          <tr class="border-b border-slate-100">
+            <td class="px-4 py-3 font-bold text-slate-900">Smallest scope</td>
+            <td class="px-4 py-3">2 channels, up to 10 SKUs, 26 weeks of history</td>
+            <td class="px-4 py-3 text-right font-bold text-slate-900">$1,950</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="px-4 py-3 font-bold text-slate-900">Bigger scope</td>
+            <td class="px-4 py-3">3 channels, up to 25 SKUs, 52 weeks of history</td>
+            <td class="px-4 py-3 text-right font-bold text-slate-900">$2,950</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="px-4 py-3 font-bold text-slate-900">Largest scope</td>
+            <td class="px-4 py-3">Up to 7 channels</td>
+            <td class="px-4 py-3 text-right font-bold text-slate-900">$4,950</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="px-4 py-3 font-bold text-slate-900">Each extra channel</td>
+            <td class="px-4 py-3">Beyond 7 channels</td>
+            <td class="px-4 py-3 text-right font-bold text-slate-900">$500</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 font-bold text-slate-900">Annual support, discounted</td>
+            <td class="px-4 py-3">Keeps your view up to date, and fixes it if a data source changes or a file breaks after the first 90 days</td>
+            <td class="px-4 py-3 text-right font-bold text-slate-900">$500 / year</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="border-t border-slate-100 bg-slate-50">
+    <div class="mx-auto max-w-6xl px-5 py-12 grid gap-10 sm:grid-cols-3">
+      <div>
+        <a href="./index.html" class="flex items-center gap-2 font-extrabold tracking-tight text-lg text-slate-900"><img src="./logo.png" class="h-8 w-8 rounded-md" alt="" /> Navaark</a>
+        <p class="mt-3 text-sm text-slate-500 max-w-xs">Data + AI for CPG brands making faster retail decisions.</p>
+      </div>
+      <div class="text-sm">
+        <p class="font-semibold text-slate-900">Site</p>
+        <ul class="mt-3 space-y-2 text-slate-500">
+          <li><a href="./about.html" class="hover:text-slate-900">About</a></li>
+          <li><a href="./services.html" class="hover:text-slate-900">Services</a></li>
+          <li><a href="./vantage.html" class="hover:text-slate-900">Vantage</a></li>
+          <li><a href="./shelfkeep.html" class="hover:text-slate-900">ShelfKeep</a></li>
+          <li><a href="./signals.html" class="hover:text-slate-900">The signals we watch</a></li>
+          <li><a href="./scorecard.html" class="hover:text-slate-900">Retail Data Scorecard</a></li>
+          <li><a href="./roi.html" class="hover:text-slate-900">ROI calculator</a></li>
+          <li><a href="./calculator.html" class="hover:text-slate-900" aria-current="page">Price calculator</a></li>
+          <li><a href="./insights/" class="hover:text-slate-900">Insights</a></li>
+          <li><a href="./index.html#contact" class="hover:text-slate-900">Contact</a></li>
+        </ul>
+      </div>
+      <div class="text-sm">
+        <p class="font-semibold text-slate-900">Legal</p>
+        <ul class="mt-3 space-y-2 text-slate-500">
+          <li><a href="./privacy.html" class="hover:text-slate-900">Privacy Policy</a></li>
+          <li><a href="./terms.html" class="hover:text-slate-900">Terms of Use</a></li>
+        </ul>
+        <p class="mt-4 text-slate-500"><a href="mailto:Geetha@navaark.com" class="hover:text-slate-900">Geetha@navaark.com</a></p>
+      </div>
+    </div>
+    <div class="border-t border-slate-200">
+      <div class="mx-auto max-w-6xl px-5 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400 text-center sm:text-left">
+        <span>© <span id="yr"></span> Navaark. All rights reserved.</span>
+        <span>Navaark is an independent advisory practice and is not affiliated with, sponsored by, or endorsed by Walmart Inc. or Costco Wholesale Corporation</span>
+      </div>
+    </div>
+  </footer>
+  <script src="./assets/analytics.js" defer></script>
+  <script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
+  <script>
+  (function () {
+    function num(id) {
+      var v = parseFloat(document.getElementById(id).value);
+      return isNaN(v) || v < 1 ? 1 : Math.floor(v);
+    }
+    function money(n) {
+      return "$" + Math.round(n).toLocaleString("en-US");
+    }
+    function calculate() {
+      var ch = num("in-channels"), sku = num("in-skus"), wk = num("in-weeks");
+      var price, scope;
+      if (ch <= 2 && sku <= 10 && wk <= 26) {
+        price = 1950;
+        scope = "Smallest scope — 2 channels, up to 10 SKUs, 26 weeks of history.";
+      } else if (ch <= 3 && sku <= 25 && wk <= 52) {
+        price = 2950;
+        scope = "Bigger scope — 3 channels, up to 25 SKUs, 52 weeks of history.";
+      } else if (ch <= 7) {
+        price = 4950;
+        scope = "Largest scope — up to 7 channels.";
+      } else {
+        var extra = ch - 7;
+        price = 4950 + extra * 500;
+        scope = "Largest scope — up to 7 channels, plus " + extra + " extra channel" + (extra > 1 ? "s" : "") + " at $500 each.";
+      }
+      document.getElementById("total").textContent = money(price);
+      document.getElementById("scope").textContent = scope;
+    }
+    ["in-channels", "in-skus", "in-weeks"].forEach(function (id) {
+      document.getElementById(id).addEventListener("input", calculate);
+    });
+    document.getElementById("calc-btn").addEventListener("click", calculate);
+    calculate();
+  })();
+  </script>
+</body>
+</html>
