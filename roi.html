@@ -113,6 +113,15 @@
         <a href="https://gavadha.github.io/Navaark-vantage/" target="_blank" rel="noopener" class="rounded-xl bg-white text-[#1B2A4A] px-6 py-3.5 font-bold hover:bg-[#EEF1F6] text-center">See what Vantage would show you →</a>
         <a href="https://calendar.app.google/cm4nGc9spB4UnLk68" target="_blank" rel="noopener" class="rounded-xl border border-white/40 px-6 py-3.5 font-bold hover:bg-white/10 text-center">Book a call</a>
       </div>
+      <div class="mt-7 rounded-xl border border-white/20 p-5">
+        <p class="font-bold text-white">Want your results by email?</p>
+        <p class="mt-1 text-sm text-[#D7DEEA]">Leave your work email and we will send your numbers, so you have them when you talk to your team. No newsletter, and no sales calls unless you ask.</p>
+        <div class="mt-4 flex flex-col sm:flex-row gap-3">
+          <input id="in-email" type="email" placeholder="you@company.com" class="w-full sm:flex-1 rounded-xl border border-white/30 bg-white/10 px-4 py-3 text-white placeholder:text-[#D7DEEA]" />
+          <button id="email-btn" type="button" class="rounded-xl bg-white text-[#1B2A4A] px-6 py-3 font-bold hover:bg-[#EEF1F6]">Email me my results</button>
+        </div>
+        <p id="email-note" class="mt-3 text-sm text-[#D7DEEA]"></p>
+      </div>
     </div>
 
     <p class="mt-6 text-sm text-slate-500">Not sure about a number? Use your best guess — the point is the order of magnitude. If you would rather talk it through, <a href="https://calendar.app.google/cm4nGc9spB4UnLk68" target="_blank" rel="noopener" class="text-[#1B2A4A] underline">book a call</a> and bring the numbers you do have.</p>
@@ -193,6 +202,25 @@
       document.getElementById(id).addEventListener("input", calculate);
     });
     document.getElementById("calc-btn").addEventListener("click", calculate);
+    document.getElementById("email-btn").addEventListener("click", function () {
+      var email = document.getElementById("in-email").value.trim();
+      var note = document.getElementById("email-note");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        note.textContent = "Enter your work email first, so we know where to send it.";
+        return;
+      }
+      var body = "My ROI calculator results from navaark.com:\n\n"
+        + "Annual cost at stake: " + document.getElementById("total").textContent + "\n"
+        + "Manual reporting time: " + document.getElementById("line-manual").textContent + "\n"
+        + "Deductions: " + document.getElementById("line-deductions").textContent + "\n"
+        + "Stockouts / lost sales: " + document.getElementById("line-stockouts").textContent + "\n\n"
+        + "My email: " + email + "\n\n"
+        + "Please send my results and let me know the next step.";
+      window.location.href = "mailto:Geetha@navaark.com"
+        + "?subject=" + encodeURIComponent("My ROI calculator results")
+        + "&body=" + encodeURIComponent(body);
+      note.textContent = "Your email app should open with the results ready to send.";
+    });
     calculate();
   })();
   </script>
